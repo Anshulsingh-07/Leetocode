@@ -11,11 +11,12 @@ class Solution {
             }
         }
         while(j<nums.length && i<nums.length){
-            if(nums[j]==0){
+            if(nums[j]!=0){
                 int temp = nums[i];
                 nums[i] = nums[j];
                 nums[j] = temp; 
                 i++;
+                j++;
             }
             else{
                 j++;
