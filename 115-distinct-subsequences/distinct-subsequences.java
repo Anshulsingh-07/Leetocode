@@ -1,22 +1,20 @@
 class Solution {
-    int solve(String a , String b, int i, int j,int[][]dp){
-      
-        if(j == b.length())return 1;
-
-        if(i == a.length())return 0;
-          if(dp[i][j]!=-1)return dp[i][j];
-        
-        if(a.charAt(i)== b.charAt(j)){
-            return dp[i][j]  = solve(a,b,i+1,j+1,dp)+solve(a,b,i+1,j,dp);
-        }
-        return dp[i][j] = solve(a,b,i+1,j,dp);
-       
-    }
+    
     public int numDistinct(String s, String t) {
-        int dp[][] = new int[s.length()][t.length()];
+        int dp[][] = new int[s.length()+1][t.length()+1];
         for(int i = 0;i<dp.length;i++){
-            Arrays.fill(dp[i],-1);
+            dp[i][0] = 1;
         }
-      return solve(s,t,0,0,dp);
+        for(int i = 1;i<dp.length;i++){
+            for(int j = 1;j<dp[0].length;j++){
+                if(s.charAt(i-1)== t.charAt(j-1)){
+                    dp[i][j] = dp[i-1][j-1]+dp[i-1][j];
+                }
+                else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+        return dp[s.length()][t.length()];
     }
 }
