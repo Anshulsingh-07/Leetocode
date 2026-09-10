@@ -58,7 +58,7 @@ class Solution {
                 TreeNode newnode = q.poll();
                 int val = avg(newnode);
                 if(val==newnode.val)count++;
-                System.out.println(newnode.val+","+val);
+               
                 if(newnode.left!=null){
                     
                     q.add(newnode.left);
